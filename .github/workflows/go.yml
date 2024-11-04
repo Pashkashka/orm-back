@@ -30,8 +30,14 @@ jobs:
       - name: Build
         run: go build -v .
 
+      - name: Start Application
+        run: ./app &
+
       - name: Test
         run: go test -v .
 
       - name: List files after build
         run: ls -la
+
+      - name: Show URL
+        run: echo "Web app is running at http://localhost:8080"
