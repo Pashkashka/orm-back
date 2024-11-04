@@ -1,6 +1,5 @@
 name: Go
 
-# Запускать workflow при push'ах в main и pull request'ах в main
 on:
   push:
     branches: [ "main" ]
@@ -19,16 +18,11 @@ jobs:
       with:
         go-version: '1.23.1'
 
+    - name: Create Go module
+      run: go mod init test-go-project
+      
     - name: Build
       run: go build -v .
-
+      
     - name: Test
       run: go test -v .
-
-    - name: Start Web Server
-      run: |
-        ./your_web_app_binary & # Запуск вашего веб-приложения в фоновом режиме
-        sleep 3 # Подождите, чтобы веб-приложение могло быть доступно
-
-    - name: Show URL
-      run: echo "Web app is running at http://localhost:8080" # Измените этот URL на фактический, если у вас другой порт
