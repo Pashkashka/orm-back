@@ -31,10 +31,10 @@ jobs:
         run: go build -v .
 
       - name: Run application
-      run: ./app &
-      
-    - name: Wait for application to start
-      run: sleep 5s # Подождем некоторое время, прежде чем пытаться обратиться к серверу
+        run: ./app &
 
-    - name: Test application
-      run: curl http://localhost:8080 # Запустим тестовый запрос к приложению
+      - name: Wait for application to start
+        run: sleep 5s # Подождем некоторое время, прежде чем пытаться обратиться к серверу
+
+      - name: Test application
+        run: curl http://localhost:8080 # Запустим тестовый запрос к приложению
