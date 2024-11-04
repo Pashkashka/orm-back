@@ -19,7 +19,7 @@ var db *sql.DB
 
 func initDB() {
 	var err error
-	connectionString := "user=user password=password dbname=albums_db host=localhost port=5432 sslmode=disable"
+	connectionString := "user=user password=password dbname=albums_db host=db port=5432 sslmode=disable"
 	db, err = sql.Open("pgx", connectionString)
 	if err != nil {
 		log.Fatal("Ошибка при подключении к БД:", err)
@@ -46,5 +46,5 @@ func main (){
 	router.POST("/albums", c.PostAlbum)
 	router.DELETE("albums/:id", c.DeleteAlbum)
 
-	router.Run("localhost:8080")
+	router.Run("0.0.0.0:8080")
 }

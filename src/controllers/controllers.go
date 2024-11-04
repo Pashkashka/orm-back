@@ -45,7 +45,7 @@ func (c *Controller) GetAlbums(context *gin.Context) {
 
 	rows, err := c.db.Query(query, args...)
 	if err != nil {
-		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "Что пошло не так, проверьте логи системы", "errorInfo": err})
+		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "Что пошло не так, проверьте логи системы", "errorInfo": err.Error()})
 		return
 	}
 	defer rows.Close()
@@ -54,7 +54,7 @@ func (c *Controller) GetAlbums(context *gin.Context) {
 	for rows.Next() {
 		var album src.ALBUM
 		if err := rows.Scan(&album.ID, &album.Fullname, &album.RecordBook, &album.BirthDate, &album.CreateDate); err != nil {
-			context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "Что пошло не так, проверьте логи системы", "errorInfo": err})
+			context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "Что пошло не так, проверьте логи системы", "errorInfo":err.Error()})
 			return
 		}
 		albums = append(albums, album)
