@@ -65,7 +65,7 @@ func (c *Controller) GetAlbums(context *gin.Context) {
 		return
 	}
 
-	context.IndentedJSON(http.StatusNotFound, gin.H{"error": "Фильтрация не обнаружила объект"})
+	context.IndentedJSON(http.StatusNotFound, gin.H{"error": "Фильтрация не обнаружила объектов"})
 
 	
 }
